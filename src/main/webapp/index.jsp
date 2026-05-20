@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FrikiPartida - Tu Forja de Aventuras</title>
     <style type="text/css">
-		/* --- CONFIGURACIÓN GENERAL ROJO Y NEGRO ESTRICTO --- */
+
 		:root {
-		    --color-negro-fondo: #050505;   /* Negro absoluto */
-		    --color-negro-tarjeta: #0f0f0f; /* Negro tarjeta */
-		    --color-rojo-oscuro: #4d0000;   /* Bordes de hierro forjado */
-		    --color-rojo-vivo: #990000;     /* Énfasis principal */
-		    --color-rojo-neon: #ff0000;     /* Enlaces activos y fuego */
+		    --color-negro-fondo: #050505;
+		    --color-negro-tarjeta: #0f0f0f;
+		    --color-rojo-oscuro: #4d0000;
+		    --color-rojo-vivo: #990000;
+		    --color-rojo-neon: #ff0000;     
 		    --color-texto: #f0f0f0;
 		    --fuente-titulos: 'Cinzel', serif;
 		    --fuente-texto: 'Roboto', sans-serif;
@@ -27,7 +27,6 @@
 		    overflow-x: hidden;
 		}
 		
-		/* --- NAVBAR (MENÚ) --- */
 		.navbar {
 		    display: flex;
 		    justify-content: space-between;
@@ -75,7 +74,6 @@
 		    color: var(--color-rojo-neon);
 		}
 		
-		/* Menú Desplegable (Dropdown del Master) */
 		.dropdown-master:hover .dropdown-menu {
 		    display: block;
 		}
@@ -114,7 +112,6 @@
 		    color: white;
 		}
 		
-		/* Botón Login / Logout */
 		.btn-login {
 		    border: 2px solid var(--color-rojo-vivo);
 		    padding: 8px 16px;
@@ -135,7 +132,6 @@
 		    color: var(--color-rojo-neon) !important;
 		}
 		
-		/* --- HERO SECTION --- */
 		.hero {
 		    position: relative;
 		    height: 70vh;
@@ -213,7 +209,6 @@
 		    background-color: rgba(255, 0, 0, 0.05);
 		}
 		
-		/* --- MAIN INFO SECTION --- */
 		.info-section {
 		    padding: 60px 20px;
 		}
@@ -258,7 +253,6 @@
 		    color: #cccccc;
 		}
 		
-		/* Banner de error/alerta */
 		.error-banner {
 		    background-color: rgba(77, 0, 0, 0.4);
 		    border: 2px solid var(--color-rojo-neon);
@@ -268,7 +262,6 @@
 		    font-weight: bold;
 		}
 
-		/* --- FOOTER --- */
 		footer {
 		    text-align: center;
 		    padding: 30px;
@@ -282,7 +275,6 @@
 <body>
 
     <%
-        // Capturamos el rol y el nombre guardados en la sesión por el Servlet
         Boolean esMaster = (Boolean) session.getAttribute("esMaster");
         String nombreDM = (String) session.getAttribute("usuarioLogueado");
         boolean esDM = (esMaster != null && esMaster);
@@ -296,7 +288,7 @@
 
     <header class="navbar">
         <div class="logo">
-            <span>🎲 FrikiPartida</span>
+            <span>FrikiPartida</span>
         </div>
         <nav>
             <ul class="nav-links">
@@ -305,7 +297,7 @@
                 
                 <% if (esDM) { %>
                     <li class="dropdown-master">
-                        <a href="#" class="gm-link">Panel DM (<%= nombreDM %>) 👑</a>
+                        <a href="#" class="gm-link">Panel DM (<%= nombreDM %>)</a>
                         <ul class="dropdown-menu">
                             <li><a href="crearPartida.jsp">Crear Partida</a></li>
                             <li><a href="armaInsertar">Forjar Armas</a></li>
@@ -337,7 +329,7 @@
                     <a href="armaInsertar" class="btn-secondary">Forjar Armas ⚔️</a>
                 <% } else { %>
                     <a href="personajeInsertar.jsp" class="btn-primary">Crear Personaje ⚔️</a>
-                    <a href="login.jsp" class="btn-secondary">Iniciar como DM 👑</a>
+                    <a href="login.jsp" class="btn-secondary">Iniciar como DM</a>
                 <% } %>
             </div>
         </div>

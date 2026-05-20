@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-    // Doble verificación: si no es máster, patada defensiva al index
     Boolean esMaster = (Boolean) session.getAttribute("esMaster");
     if (esMaster == null || !esMaster) {
-        request.setAttribute("mensaje", "⚠️ ¡Invasión de mazmorra! No tienes permisos para crear armas.");
+        request.setAttribute("mensaje", " ¡Invasión de mazmorra! No tienes permisos para crear armas.");
         request.getRequestDispatcher("index.jsp").forward(request, response);
         return;
     }
@@ -35,7 +34,7 @@
 <body>
 
 <div class="form-container">
-    <h2>⚒️ Forjar Nueva Arma Forjada</h2>
+    <h2>Forjar Nueva Arma Forjada</h2>
     
     <% if (request.getAttribute("mensaje") != null) { %>
         <div class="alert"><%= request.getAttribute("mensaje") %></div>

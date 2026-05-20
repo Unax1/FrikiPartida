@@ -37,7 +37,7 @@
 
 <div class="container">
     <div class="header-section">
-        <h2>🗡️ Arsenal de Armas Disponibles</h2>
+        <h2>Arsenal de Armas Disponibles</h2>
         <div>
             <a href="index.jsp" class="btn btn-back">Volver al Panel</a>
             <% if (esMaster) { %>

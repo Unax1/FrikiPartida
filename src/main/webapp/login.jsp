@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <title>Frikipartida - Iniciar Sesión</title>
     <style>
-        /* CSS Estilo Taberna Oscura */
         body {
             background-color: #121212;
             background-image: linear-gradient(135px, #1a1a1a 25%, #121212 100%);

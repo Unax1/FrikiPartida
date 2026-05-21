@@ -106,14 +106,13 @@
     <div class="login-container">
         <h1>Frikipartida</h1>
         
-        <%-- Alerta en caso de credenciales erróneas o expulsión --%>
         <% if (request.getAttribute("mensaje") != null) { %>
             <div class="error-mensaje">
                 <%= request.getAttribute("mensaje") %>
             </div>
         <% } %>
 
-        <form action="index.jsp" method="POST">
+        <form action="loginControlador" method="POST">
             <div class="form-group">
                 <label for="usuario">Nombre del Aventurero / DM:</label>
                 <input type="text" id="usuario" name="usuario" required placeholder="Ej: MasterDelCalabozo">

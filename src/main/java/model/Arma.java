@@ -10,10 +10,8 @@ public class Arma {
     private String propiedades;
     private String nomPartida;
 
-    // Constructor vacío (necesario para el DAO)
     public Arma() {}
 
-    // Constructor sin ID (para insertar armas nuevas)
     public Arma(String nombre, String tipoDano, String dado, String precio, double peso, String propiedades, String nomPartida) {
         this.nombre = nombre;
         this.tipoDano = tipoDano;
@@ -24,7 +22,6 @@ public class Arma {
         this.nomPartida = nomPartida;
     }
 
-    // Constructor completo (para leer de la base de datos)
     public Arma(int id, String nombre, String tipoDano, String dado, String precio, double peso, String propiedades, String nomPartida) {
         this.id = id;
         this.nombre = nombre;
@@ -36,7 +33,6 @@ public class Arma {
         this.nomPartida = nomPartida;
     }
 
-    // Getters y Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

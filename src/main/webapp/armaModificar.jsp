@@ -34,10 +34,9 @@
 <body>
 
 <div class="form-container">
-    <h2>🔮 Alterar Propiedades Mágicas</h2>
+    <h2>Alterar Propiedades Mágicas</h2>
 
     <form action="modificarArmas" method="POST">
-        <%-- Input oculto indispensable para conservar la clave primaria al actualizar --%>
         <input type="hidden" name="IDArma" value="<%= arma != null ? arma.getId() : "" %>">
 
         <div class="form-group">

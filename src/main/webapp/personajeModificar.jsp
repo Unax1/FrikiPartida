@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="model.Partida" %>
+<%@ page import="model.Personaje" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Modificar Partida - Gestión de Partida</title>
+    <title>Modificar Personaje - Gestión de Campaña</title>
     <style>
         body {
-            background-color: #121212; 
+            background-color: #121212;
             color: #e0e0e0;
             font-family: 'Segoe UI', sans-serif;
             margin: 0;
@@ -37,10 +37,10 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
         fieldset {
-            padding: 15px;
-            margin-bottom: 15px;
             border: 1px solid #424242;
             border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 15px;
         }
         legend {
             color: #b0bec5;
@@ -54,7 +54,7 @@
             margin-top: 10px;
             font-size: 0.9rem;
         }
-        input[type="text"], input[type="number"], select {
+        input[type="text"], input[type="number"] {
             width: 100%;
             padding: 10px;
             background-color: #262626;
@@ -63,7 +63,7 @@
             color: white;
             box-sizing: border-box;
         }
-        input:focus, select:focus {
+        input:focus {
             border-color: #e53935;
             outline: none;
         }
@@ -106,8 +106,8 @@
     </style>
 </head>
 <body>
-    <h1>Sistema de Gestión de Partidas</h1>
-    <h2>Modificar Partida</h2>
+    <h1>Sistema de Gestión de Personajes</h1>
+    <h2>Modificar Personaje</h2>
 
     <% if (request.getAttribute("mensaje") != null) { %>
         <p class="<%= "exito".equals(request.getAttribute("tipo")) ? "mensaje-exito" : "mensaje-error" %>">
@@ -116,58 +116,39 @@
     <% } %>
 
     <%
-        Partida partida = (Partida) request.getAttribute("partida");
-        if (partida != null) {
+        Personaje personaje = (Personaje) request.getAttribute("personaje");
+        if (personaje != null) {
     %>
 
-    <form action="modificarPartida" method="post">
-        <input type="hidden" name="IDPartida" value="<%= partida.getId() %>">
+    <form action="modificarPersonaje" method="post">
+        <input type="hidden" name="id" value="<%= personaje.getId() %>">
 
         <fieldset>
-            <legend>Datos de la Campaña</legend>
+            <legend>Datos del Personaje</legend>
+
+            <label for="IDPersonaje">ID del Personaje:</label>
+            <input type="number" id="IDPersonaje" name="IDPersonaje" value="<%= personaje.getId() %>" readonly>
+		  
+            <label for="NomPersonaje">Nombre del Personaje:</label>
+            <input type="text" id="NomPersonaje" name="NomPersonaje" value="<%= personaje.getNombrePJ() %>" required maxlength="30">
 		
-            <label for="IDPartidaDisplay">ID de la Mesa:</label>
-            <input type="number" id="IDPartidaDisplay" value="<%= partida.getId() %>" readonly>
-		    
-            <label for="NomPartida">Nombre de la Partida:</label>
-            <input type="text" id="NomPartida" name="NomPartida" value="<%= partida.getNombre() %>" required maxlength="30">
+            <label for="NomJugador">Nombre del Jugador:</label>
+            <input type="text" id="NomJugador" name="NomJugador" value="<%= personaje.getNombreJugador() %>" required maxlength="30">
 		
-            <label for="DM">Dungeon Master:</label>
-            <input type="text" id="DM" name="DM" value="<%= partida.getDm() %>" required maxlength="30">
+            <label for="Nivel">Nivel:</label>
+            <input type="number" id="Nivel" name="Nivel" value="<%= personaje.getNivel() %>" min="1" max="20" required>
 		
-            <label for="CantSesiones">Cantidad de Sesiones Jugadas:</label>
-            <input type="number" id="CantSesiones" name="CantSesiones" value="<%= partida.getCantSesiones() %>" min="0" required>
-		
-            <label for="Estado">Estado de la Mesa:</label>
-            <select id="Estado" name="Estado" required>
-                <% 
-                    String estadoAct = partida.getEstado() != null ? partida.getEstado() : "Por empezar"; 
-                    String[] estados = {"Por empezar", "En proceso", "Terminada"};
-                    for(String est : estados) {
-                %>
-                    <option value="<%= est %>" <%= est.equals(estadoAct) ? "selected" : "" %>><%= est %></option>
-                <% } %>
-            </select>
-		
-            <label for="Dificultad">Dificultad del Reto:</label>
-            <select id="Dificultad" name="Dificultad" required>
-                <% 
-                    String difAct = partida.getDificultad() != null ? partida.getDificultad() : "Intermedio"; 
-                    String[] dificultades = {"Facil", "Intermedio", "Dificil", "Experto"};
-                    for(String dif : dificultades) {
-                %>
-                    <option value="<%= dif %>" <%= dif.equals(difAct) ? "selected" : "" %>><%= dif %></option>
-                <% } %>
-            </select>
+            <label for="NomPartida">Mesa / Campaña asignada:</label>
+            <input type="text" id="NomPartida" name="NomPartida" value="<%= personaje.getNomPartida() %>" required maxlength="30">
         </fieldset>
 
         <input type="submit" value="Guardar Cambios">
     </form>
 
     <% } else { %>
-        <p class="mensaje-error">Error: No se pudo cargar la mesa de juego solicitada.</p>
+        <p class="mensaje-error">No se encontró el personaje solicitado.</p>
     <% } %>
 
-    <a class="volver" href="listarPartidas">← Volver al listado</a>
+    <a class="volver" href="listarPersonajes">← Volver al listado</a>
 </body>
 </html>

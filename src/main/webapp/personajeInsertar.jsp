@@ -1,17 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%
-    Boolean esMaster = (Boolean) session.getAttribute("esMaster");
-    if (esMaster == null || !esMaster) {
-        request.setAttribute("mensaje", "¡Zona Restringida! Solo los Dungeon Masters pueden forjar artefactos.");
-        request.getRequestDispatcher("index.jsp").forward(request, response);
-        return;
-    }
-%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Forjar Arma - Gestión de Arsenal</title>
+    <title>Insertar Personaje - Gestión de Campaña</title>
     <style>
         body {
             background-color: #121212;
@@ -61,7 +53,7 @@
             margin-top: 10px;
             font-size: 0.9rem;
         }
-        input[type="text"], input[type="number"], select {
+        input[type="text"], input[type="number"] {
             width: 100%;
             padding: 10px;
             background-color: #262626;
@@ -70,11 +62,11 @@
             color: white;
             box-sizing: border-box;
         }
-        input:focus, select:focus {
+        input:focus {
             border-color: #e53935;
             outline: none;
         }
-        .buttons-container {
+        .botones-contenedor {
             display: flex;
             gap: 10px;
             margin-top: 20px;
@@ -127,8 +119,8 @@
     </style>
 </head>
 <body>
-    <h1>Sistema de Gestión de Partidas</h1>
-    <h2>Insertar Nueva Arma</h2>
+    <h1>Sistema de Gestión de Personajes</h1>
+    <h2>Insertar Nuevo Personaje</h2>
 
     <% if (request.getAttribute("mensaje") != null) { %>
         <p class="<%= "exito".equals(request.getAttribute("tipo")) ? "mensaje-exito" : "mensaje-error" %>">
@@ -136,35 +128,29 @@
         </p>
     <% } %>
 
-    <form action="insertarArma" method="post">
+    <form action="insertarPersonaje" method="post">
         <fieldset>
-            <legend>Datos del Arma</legend>
+            <legend>Datos del Personaje</legend>
 
-            <label for="Nombre">Nombre del Arma:</label>
-            <input type="text" id="Nombre" name="Nombre" required maxlength="30" placeholder="Ej: Mandoble de Cortefuego">
-
-            <label for="TipoDano">Tipo de Daño:</label>
-            <input type="text" id="TipoDano" name="TipoDano" required maxlength="20" placeholder="Ej: Cortante, Fuego">
-
-            <label for="DadoDano">Daño Base (Dados):</label>
-            <input type="text" id="DadoDano" name="DadoDano" required maxlength="10" placeholder="Ej: 2d6, 1d8">
-            
-            <label for="Rareza">Rareza del Artefacto:</label>
-            <select id="Rareza" name="Rareza" required>
-                <option value="Comun">Común</option>
-                <option value="Poco Comun">Poco Común</option>
-                <option value="Rara" selected>Rara</option>
-                <option value="Epica">Épica</option>
-                <option value="Legendaria">Legendaria</option>
-            </select>
+            <label for="NomPersonaje">Nombre del Personaje:</label>
+            <input type="text" id="NomPersonaje" name="NomPersonaje" required maxlength="30">
+		
+            <label for="NomJugador">Nombre del Jugador:</label>
+            <input type="text" id="NomJugador" name="NomJugador" required maxlength="30">
+		
+            <label for="Nivel">Nivel:</label>
+            <input type="number" id="Nivel" name="Nivel" value="1" min="1" max="20" required>
+		
+            <label for="NomPartida">Mesa / Campaña asignada:</label>
+            <input type="text" id="NomPartida" name="NomPartida" required maxlength="30">
         </fieldset>
 
-        <div class="buttons-container">
-            <input type="submit" value="Forjar Arma">
+        <div class="botones-contenedor">
+            <input type="submit" value="Insertar Personaje">
             <input type="reset" value="Limpiar">
         </div>
     </form>
 
-    <a class="volver" href="listarArmas">← Volver al listado</a>
+    <a class="volver" href="listarPersonajes">← Volver al listado</a>
 </body>
 </html>

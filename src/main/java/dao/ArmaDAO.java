@@ -37,7 +37,6 @@ public class ArmaDAO {
         return listaArma;
     }
 
-    // CORREGIDO: Cambiado de 'int' a 'boolean' para que el servlet valide correctamente con el IF
     public boolean insertarArma(Arma arma) {
         String sql = "INSERT INTO Armas (Nombre, TipoDano, DadoDano, Precio, Peso, Propiedades, NomPartida) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection(); 
@@ -51,7 +50,7 @@ public class ArmaDAO {
             ps.setString(7, arma.getNomPartida());
             
             int filas = ps.executeUpdate();
-            return filas > 0; // Si guardó al menos 1 fila, devuelve true. Si no, false.
+            return filas > 0;
         } catch (SQLException e) {
             System.err.println("Error SQL en ArmaDAO: " + e.getMessage());
             return false;

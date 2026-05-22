@@ -7,7 +7,7 @@ import jakarta.servlet.http.*;
 import model.Partida;
 import java.io.IOException;
 
-@WebServlet("/modificarPartidas")
+@WebServlet("/modificarPartida")
 public class PartidaServletModificar extends HttpServlet {
     private PartidaDAO partidaDAO;
 
@@ -52,6 +52,7 @@ public class PartidaServletModificar extends HttpServlet {
             if (partidaDAO.actualizarPartida(partidaActualizada)) {
                 response.sendRedirect("listarPartidas");
             } else {
+                request.setAttribute("partida", partidaActualizada);
                 request.setAttribute("mensaje", "No se pudo actualizar la partida.");
                 request.getRequestDispatcher("partidaModificar.jsp").forward(request, response);
             }

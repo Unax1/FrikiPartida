@@ -7,10 +7,14 @@ public class Personaje {
     private int nivel;
     private String nomPartida;
 
-    // Constructor vacío
     public Personaje() {}
-
-    // Constructor completo
+    
+    public Personaje(String nombrePJ, String nombreJugador, int nivel, String nomPartida) {
+    	this.nombrePJ = nombrePJ;
+    	this.nombreJugador = nombreJugador;
+    	this.nivel = nivel;
+    	this.nomPartida = nomPartida;
+    }
     public Personaje(int id, String nombrePJ, String nombreJugador, int nivel, String nomPartida) {
         this.id = id;
         this.nombrePJ = nombrePJ;
@@ -19,7 +23,6 @@ public class Personaje {
         this.nomPartida = nomPartida;
     }
 
-    // Getters y Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

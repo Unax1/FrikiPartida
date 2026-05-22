@@ -10,10 +10,8 @@ public class Sesion {
     private double duracion;
     private String nomPartida;
 
-    // Constructor vacío
     public Sesion() {}
-
-    // Constructor completo
+    
     public Sesion(int numSesion, String nombre, int cantidad, Date fecha, double duracion, String nomPartida) {
         this.numSesion = numSesion;
         this.nombre = nombre;
@@ -23,7 +21,6 @@ public class Sesion {
         this.nomPartida = nomPartida;
     }
 
-    // Getters y Setters
     public int getNumSesion() { return numSesion; }
     public void setNumSesion(int numSesion) { this.numSesion = numSesion; }
 

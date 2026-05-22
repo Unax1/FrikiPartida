@@ -8,10 +8,17 @@ public class Partida {
     private int cantSesiones;
     private String dificultad;
 
-    // Constructor vacío
-    public Partida() {}
 
-    // Constructor completo
+    public Partida() {}
+    
+    public Partida(String nombre, String dm, String estado, int cantSesiones, String dificultad) {
+        this.nombre = nombre;
+        this.dm = dm;
+        this.estado = estado;
+        this.cantSesiones = cantSesiones;
+        this.dificultad = dificultad;
+    }
+
     public Partida(int id, String nombre, String dm, String estado, int cantSesiones, String dificultad) {
         this.id = id;
         this.nombre = nombre;
@@ -21,7 +28,6 @@ public class Partida {
         this.dificultad = dificultad;
     }
 
-    // Getters y Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

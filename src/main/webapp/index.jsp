@@ -280,14 +280,13 @@
 
     <%
         Boolean esMaster = (Boolean) session.getAttribute("esMaster");
-        // CORREGIDO: Cambiado de "usuarioLogueado" a "usuario" para que coincida con tu LoginServlet
         String nombreDM = (String) session.getAttribute("usuario");
         boolean esDM = (esMaster != null && esMaster);
     %>
 
     <% if (request.getAttribute("mensaje") != null) { %>
         <div class="error-banner">
-            🛡️ <%= request.getAttribute("mensaje") %>
+            <%= request.getAttribute("mensaje") %>
         </div>
     <% } %>
 
@@ -300,23 +299,19 @@
                 <li><a href="index.jsp" class="active">Inicio</a></li>
                 <li><a href="listarPersonajes">Mis Personajes</a></li>
                 
-                <%-- NUEVO: Enlace directo al Tablón de Partidas para Jugadores --%>
                 <li><a href="listarPartidas">Ver Mesas</a></li>
-                <%-- NUEVO: Enlace directo al Arsenal de Armas para Jugadores --%>
                 <li><a href="listarArmas">Armería</a></li>
                 
                 <% if (esDM) { %>
                     <li class="dropdown-master">
                         <a href="#" class="gm-link">Panel DM (<%= nombreDM %>)</a>
                         <ul class="dropdown-menu">
-                            <%-- MODIFICADO: Añadidos los accesos rápidos a los listados de gestión --%>
-                            <li><a href="listarPartidas">📜 Gestionar Partidas</a></li>
-                            <li><a href="partidaInsertar.jsp">🎲 Crear Partida</a></li>
-                            <li><a href="listarArmas">📦 Gestionar Armas</a></li>
-                            <li><a href="armaInsertar.jsp">⚔️ Forjar Armas</a></li>
+                            <li><a href="listarPartidas">Gestionar Partidas</a></li>
+                            <li><a href="partidaInsertar.jsp">Crear Partida</a></li>
+                            <li><a href="listarArmas">Gestionar Armas</a></li>
+                            <li><a href="armaInsertar.jsp">Forjar Armas</a></li>
                         </ul>
                     </li>
-                    <%-- CORREGIDO: Eliminada la doble apertura << que rompía la etiqueta --%>
                     <li><a href="logout" class="btn-logout">Abandonar Grupo</a></li>
                 <% } else { %>
                     <li><a href="login.jsp" class="btn-login">Login Master</a></li>
@@ -338,10 +333,10 @@
 
             <div class="hero-buttons">
                 <% if (esDM) { %>
-                    <a href="partidaInsertar.jsp" class="btn-primary">Crear Partida 🗺️</a>
-                    <a href="armaInsertar.jsp" class="btn-secondary">Forjar Armas ⚔️</a>
+                    <a href="partidaInsertar.jsp" class="btn-primary">Crear Partida</a>
+                    <a href="armaInsertar.jsp" class="btn-secondary">Forjar Armas</a>
                 <% } else { %>
-                    <a href="personajeInsertar.jsp" class="btn-primary">Crear Personaje ⚔️</a>
+                    <a href="personajeInsertar.jsp" class="btn-primary">Crear Personaje</a>
                     <a href="login.jsp" class="btn-secondary">Iniciar como DM</a>
                 <% } %>
             </div>

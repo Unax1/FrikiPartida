@@ -2,7 +2,7 @@
 <%
     Boolean esMaster = (Boolean) session.getAttribute("esMaster");
     if (esMaster == null || !esMaster) {
-        request.setAttribute("mensaje", "⚠️ ¡Zona Restringida! Solo los Dungeon Masters pueden iniciar crónicas.");
+        request.setAttribute("mensaje", "¡Zona Restringida! Solo los Dungeon Masters pueden iniciar crónicas.");
         request.getRequestDispatcher("index.jsp").forward(request, response);
         return;
     }
@@ -11,7 +11,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Insertar Partida - Control de Campañas</title>
+    <title>Insertar Partida - Gestión de Campañas</title>
     <style>
         body { background-color: #121212; color: #e0e0e0; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; }
         .form-container { max-width: 500px; margin: 40px auto; background-color: #1c1c1c; border: 2px solid #b71c1c; border-radius: 8px; padding: 30px; box-shadow: 0 0 15px rgba(183, 28, 28, 0.3); }
@@ -47,9 +47,8 @@
 
     <form action="insertarPartida" method="post">
         <fieldset>
-            <legend>Datos de la Mesa 🎲</legend>
+            <legend>Datos de la Mesa</legend>
 
-            <%-- CRUCIAL: Se cambian los 'name' para coincidir con el Servlet y la BD --%>
             <label for="NomPartida">Nombre de la Partida:</label>
             <input type="text" id="NomPartida" name="NomPartida" required maxlength="30" placeholder="Ej: Las Crónicas de Faerûn">
 

@@ -18,12 +18,18 @@ public class PersonajeServletEliminar extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
+        
+        String idStr = request.getParameter("id");
+        
         try {
-            int id = Integer.parseInt(request.getParameter("IDPersonaje"));
-            personajeDAO.eliminarPersonaje(id);
+            if (idStr != null) {
+                int id = Integer.parseInt(idStr);
+                personajeDAO.eliminarPersonaje(id);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
         response.sendRedirect("listarPersonajes");
     }
 }

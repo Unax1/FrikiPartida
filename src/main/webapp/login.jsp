@@ -115,7 +115,7 @@
         <form action="loginControlador" method="POST">
             <div class="form-group">
                 <label for="usuario">Nombre del Aventurero / DM:</label>
-                <input type="text" id="usuario" name="usuario" required placeholder="Ej: MasterDelCalabozo">
+                <input type="text" id="usuario" name="usuario" required >
             </div>
             
             <div class="form-group">

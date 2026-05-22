@@ -3,15 +3,16 @@
 <%@ page import="model.Partida" %>
 <%
     boolean esMaster = session.getAttribute("esMaster") != null && (boolean) session.getAttribute("esMaster");
+    List<Partida> listaPartidas = (List<Partida>) request.getAttribute("listaPartidas");
 %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Listado de Partidas</title>
+    <title>Tablón de Anuncios - Partidas</title>
     <style>
         body { background-color: #121212; color: #e0e0e0; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; }
-        .container { max-width: 1100px; margin: 30px auto; background-color: #1c1c1c; border: 1px solid #333; border-radius: 8px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .container { max-width: 1100px; margin: 30px auto; background-color: #1c1c1c; border: 2px solid #b71c1c; border-radius: 8px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
         h1, h2, p { text-align: center; margin: 5px 0; }
         h1 { color: #ffffff; }
         h2 { color: #e53935; text-transform: uppercase; letter-spacing: 1px; font-size: 1.4rem; margin-bottom: 20px; }
@@ -29,7 +30,7 @@
         .acciones { text-align: center; margin: 30px 0; }
         .mensaje-exito { color: #4caf50; font-weight: bold; }
         .mensaje-error { color: #ff8a80; font-weight: bold; }
-        .badge-info { background-color: #37474f; color: #ffb300; padding: 3px 6px; border-radius: 3px; font-weight: bold; font-size: 0.85rem; }
+        .badge-info { background-color: #37474f; color: #ffb300; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 0.85rem; }
         .restricted { color: #757575; font-style: italic; font-size: 0.85rem; }
     </style>
 </head>
@@ -43,10 +44,6 @@
             <%= request.getAttribute("mensaje") %>
         </p>
     <% } %>
-
-    <%
-        List<Partida> listaPartidas = (List<Partida>) request.getAttribute("listaPartidas");
-    %>
 
     <% if (listaPartidas != null && !listaPartidas.isEmpty()) { %>
         <table>
@@ -66,15 +63,15 @@
                     <tr>
                         <td><%= par.getId() %></td>
                         <td style="font-weight: bold; color: #fff;"><%= par.getNombre() %></td>
-                        <td>👤 <%= par.getDm() %></td>
+                        <td><%= par.getDm() %></td>
                         <td><%= par.getEstado() %></td>
                         <td style="color: #ff8a80; font-weight: bold;"><%= par.getCantSesiones() %></td>
                         <td><span class="badge-info"><%= par.getDificultad() %></span></td>
                         <td>
                             <% if (esMaster) { %>
-                                <a class="btn btn-modificar" href="modificarPartida?id=<%= par.getId() %>">Modificar</a>
                                 
-                                <a class="btn btn-borrar" href="borrarPartida?id=<%= par.getId() %>"
+                                <a class="btn btn-modificar" href="modificarPartida?IDPartida=<%= par.getId() %>">Modificar</a>
+                                <a class="btn btn-borrar" href="eliminarPartida?IDPartida=<%= par.getId() %>"
                                    onclick="return confirm('¿Está seguro de que desea disolver esta mesa de campaña?');">Borrar</a>
                             <% } else { %>
                                 <span class="restricted">Solo DM</span>

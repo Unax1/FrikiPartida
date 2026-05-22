@@ -74,12 +74,17 @@
 		    color: var(--color-rojo-neon);
 		}
 		
-		.dropdown-master:hover .dropdown-menu {
+		.dropdown-master:hover .dropdown-menu,
+		.dropdown-usuario:hover .dropdown-menu {
 		    display: block;
 		}
 		
 		.gm-link {
 		    color: var(--color-rojo-neon) !important;
+		    font-weight: bold !important;
+		}
+
+		.user-link {
 		    font-weight: bold !important;
 		}
 		
@@ -297,10 +302,15 @@
         <nav>
             <ul class="nav-links">
                 <li><a href="index.jsp" class="active">Inicio</a></li>
-                <li><a href="listarPersonajes">Mis Personajes</a></li>
                 
-                <li><a href="listarPartidas">Ver Mesas</a></li>
-                <li><a href="listarArmas">Armería</a></li>
+                <li class="dropdown-usuario">
+                    <a href="#" class="user-link">Panel Usuario</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="listarPersonajes">Mis Personajes</a></li>
+                        <li><a href="listarPartidas">Ver Mesas</a></li>
+                        <li><a href="listarArmas">Armería</a></li>
+                    </ul>
+                </li>
                 
                 <% if (esDM) { %>
                     <li class="dropdown-master">

@@ -26,7 +26,6 @@ public class ArmaServletModificar extends HttpServlet {
                 Arma arma = armaDAO.obtenerArmaPorID(id);
                 if (arma != null) {
                     request.setAttribute("arma", arma);
-                    // CORREGIDO: Barra / al principio
                     request.getRequestDispatcher("/armaModificar.jsp").forward(request, response);
                     return;
                 }
@@ -56,7 +55,6 @@ public class ArmaServletModificar extends HttpServlet {
                 response.sendRedirect("listarArmas");
             } else {
                 request.setAttribute("mensaje", "No se pudo alterar el arma.");
-                // CORREGIDO: Barra / al principio
                 request.getRequestDispatcher("/armaModificar.jsp").forward(request, response);
             }
         } catch (Exception e) {

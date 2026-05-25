@@ -36,12 +36,10 @@ public class ArmaServletInsertar extends HttpServlet {
                 response.sendRedirect("listarArmas");
             } else {
                 request.setAttribute("mensaje", "Error al forjar el arma en la base de datos.");
-                // CORREGIDO: Barra / al principio
                 request.getRequestDispatcher("/armaInsertar.jsp").forward(request, response);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            // CORREGIDO: Barra / al principio
             request.getRequestDispatcher("/armaInsertar.jsp").forward(request, response);
         }
     }

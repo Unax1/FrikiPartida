@@ -308,8 +308,8 @@
                     <ul class="dropdown-menu">
                         <li><a href="listarPersonajes">Mis Personajes</a></li>
                         <li><a href="listarPartidas">Ver Mesas</a></li>
-                        <li><a href="listarArmas">Armería</a></li>
-                        <li><a href="listarSesiones">Diario de Sesiones</a></li>
+                        <li><a href="listarArmas">Armería Común</a></li>
+                        <li><a href="listarArmasEspeciales">Bóveda Mágica</a></li> <li><a href="listarSesiones">Diario de Sesiones</a></li>
                     </ul>
                 </li>
                 
@@ -321,7 +321,7 @@
                             <li><a href="partidaInsertar.jsp">Crear Partida</a></li>
                             <li><a href="listarArmas">Gestionar Armas</a></li>
                             <li><a href="armaInsertar.jsp">Forjar Armas</a></li>
-                            <li><a href="listarSesiones">Gestionar Sesiones</a></li>
+                            <li><a href="listarArmasEspeciales">Gestionar Artefactos</a></li> <li><a href="armaEspecialInsertar.jsp">Infundir Magia</a></li> <li><a href="listarSesiones">Gestionar Sesiones</a></li>
                             <li><a href="sesionInsertar.jsp">Planificar Sesión</a></li>
                         </ul>
                     </li>
@@ -346,12 +346,9 @@
 
             <div class="hero-buttons">
                 <% if (esDM) { %>
-                    <a href="sesionInsertar.jsp" class="btn-primary">Planificar Sesión</a>
-                    <a href="listarSesiones" class="btn-secondary">Historial de Sesiones</a>
-                <% } else { %>
+                    <a href="armaEspecialInsertar.jsp" class="btn-primary">Forjar Artefacto</a> <a href="listarArmasEspeciales" class="btn-secondary">Bóveda Legendaria</a> <% } else { %>
                     <a href="personajeInsertar.jsp" class="btn-primary">Crear Personaje</a>
-                    <a href="listarSesiones" class="btn-secondary">Ver Próximas Sesiones</a>
-                <% } %>
+                    <a href="listarArmasEspeciales" class="btn-secondary">Ver Bóveda Mágica</a> <% } %>
             </div>
         </div>
     </section>
@@ -360,7 +357,7 @@
         <div class="info-container">
             <div class="card bg-dark">
                 <h2>¿Qué es ser aventurero?</h2>
-                <p>Adéntrate en las campañas activas de tu Dungeon Master, crea personajes y deja volar tu imaginación, desde un hechicero estratega hasta un barbaro loco, tú destino solo depende de tí, y de tus dados, claro...</p>
+                <p>Adéntrate en las campañas activas de tu Dungeon Master, crea personajes y deja volar tu imaginación, desde un hechicero estratega hasta un bárbaro loco, tu destino solo depende de ti, y de tus dados, claro...</p>
             </div>
             
             <div class="card bg-red">

@@ -1,7 +1,6 @@
 package model;
 
 public class ArmaEspecial extends Arma {
-	
     private String rareza;
     private int bonificador;
     private String efectoMagico;
@@ -25,7 +24,7 @@ public class ArmaEspecial extends Arma {
         this.bonificador = bonificador;
         this.efectoMagico = efectoMagico;
     }
-    
+
     public String getRareza() { 
     	return rareza; 
     }

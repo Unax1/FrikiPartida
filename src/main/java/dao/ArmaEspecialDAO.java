@@ -25,6 +25,7 @@ public class ArmaEspecialDAO {
             
             while (rs.next()) {
                 ArmaEspecial ae = new ArmaEspecial();
+                
                 ae.setId(rs.getInt("IDArma"));
                 ae.setNombre(rs.getString("Nombre"));
                 ae.setTipoDano(rs.getString("TipoDano"));
@@ -53,9 +54,8 @@ public class ArmaEspecialDAO {
         Connection conn = null;
         try {
             conn = DatabaseConnection.getConnection();
-
             conn.setAutoCommit(false); 
-
+            
             try (PreparedStatement psBase = conn.prepareStatement(sqlArmaBase, Statement.RETURN_GENERATED_KEYS)) {
                 psBase.setString(1, armaEspecial.getNombre());
                 psBase.setString(2, armaEspecial.getTipoDano());
@@ -80,7 +80,7 @@ public class ArmaEspecialDAO {
                         return false;
                     }
                 }
-
+                
                 try (PreparedStatement psMagica = conn.prepareStatement(sqlArmaMagica)) {
                     psMagica.setInt(1, idGenerado);
                     psMagica.setString(2, armaEspecial.getRareza());
@@ -89,7 +89,7 @@ public class ArmaEspecialDAO {
                     
                     int filasMagicas = psMagica.executeUpdate();
                     if (filasMagicas > 0) {
-                        conn.commit();
+                        conn.commit(); 
                         return true;
                     } else {
                         conn.rollback();
@@ -101,7 +101,7 @@ public class ArmaEspecialDAO {
             if (conn != null) {
                 try { conn.rollback(); } catch (SQLException ex) { ex.printStackTrace(); }
             }
-            System.err.println("Error SQL en ArmaDAO: " + e.getMessage());
+            System.err.println("Error SQL en ArmaEspecialDAO: " + e.getMessage());
             return false;
         } finally {
             if (conn != null) {
@@ -144,7 +144,6 @@ public class ArmaEspecialDAO {
     }
 
     public boolean actualizarArmaEspecial(ArmaEspecial armaEspecial) {
-    	
         String sqlBase = "UPDATE Armas SET Nombre = ?, TipoDano = ?, DadoDano = ?, Precio = ?, Peso = ?, Propiedades = ?, NomPartida = ? WHERE IDArma = ?";
         String sqlMagica = "UPDATE ArmasEspeciales SET Rareza = ?, Bonificador = ?, EfectoMagico = ? WHERE IDArma = ?";
         
@@ -164,7 +163,7 @@ public class ArmaEspecialDAO {
                 psBase.setInt(8, armaEspecial.getId());
                 psBase.executeUpdate();
             }
-
+            
             try (PreparedStatement psMagica = conn.prepareStatement(sqlMagica)) {
                 psMagica.setString(1, armaEspecial.getRareza());
                 psMagica.setInt(2, armaEspecial.getBonificador());
@@ -194,6 +193,7 @@ public class ArmaEspecialDAO {
     }
     
     public boolean eliminarArmaEspecial(int id) {
+    	
         String sql = "DELETE FROM Armas WHERE IDArma = ?";
         try (Connection conn = DatabaseConnection.getConnection(); 
              PreparedStatement ps = conn.prepareStatement(sql)) {

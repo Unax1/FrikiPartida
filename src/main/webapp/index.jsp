@@ -309,6 +309,7 @@
                         <li><a href="listarPersonajes">Mis Personajes</a></li>
                         <li><a href="listarPartidas">Ver Mesas</a></li>
                         <li><a href="listarArmas">Armería</a></li>
+                        <li><a href="listarSesiones">Diario de Sesiones</a></li>
                     </ul>
                 </li>
                 
@@ -320,6 +321,8 @@
                             <li><a href="partidaInsertar.jsp">Crear Partida</a></li>
                             <li><a href="listarArmas">Gestionar Armas</a></li>
                             <li><a href="armaInsertar.jsp">Forjar Armas</a></li>
+                            <li><a href="listarSesiones">Gestionar Sesiones</a></li>
+                            <li><a href="sesionInsertar.jsp">Planificar Sesión</a></li>
                         </ul>
                     </li>
                     <li><a href="logout" class="btn-logout">Abandonar Grupo</a></li>
@@ -343,11 +346,11 @@
 
             <div class="hero-buttons">
                 <% if (esDM) { %>
-                    <a href="partidaInsertar.jsp" class="btn-primary">Crear Partida</a>
-                    <a href="armaInsertar.jsp" class="btn-secondary">Forjar Armas</a>
+                    <a href="sesionInsertar.jsp" class="btn-primary">Planificar Sesión</a>
+                    <a href="listarSesiones" class="btn-secondary">Historial de Sesiones</a>
                 <% } else { %>
                     <a href="personajeInsertar.jsp" class="btn-primary">Crear Personaje</a>
-                    <a href="login.jsp" class="btn-secondary">Iniciar como DM</a>
+                    <a href="listarSesiones" class="btn-secondary">Ver Próximas Sesiones</a>
                 <% } %>
             </div>
         </div>

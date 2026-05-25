@@ -11,32 +11,34 @@ import util.DatabaseConnection;
 
 public class SesionDAO {
 
-    public List<Sesion> listarSesiones() {
-        List<Sesion> listaSesiones = new ArrayList<>();
-        String sql = "SELECT NumSesion, Nombre, Cantidad, Fecha, Duracion, NomPartida FROM Sesion";
+	public List<Sesion> listarSesiones() {
+	    List<Sesion> listaSesiones = new ArrayList<>();
+	    String sql = "SELECT NumSesion, NombreSesion, CantParticipantes, Fecha, Duracion, NomPartida FROM Sesion";
 
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
-            
-            while (rs.next()) {
-                Sesion s = new Sesion();
-                s.setNumSesion(rs.getInt("NumSesion"));
-                s.setNombre(rs.getString("Nombre"));
-                s.setCantidad(rs.getInt("Cantidad"));
-                s.setFecha(rs.getDate("Fecha"));
-                s.setDuracion(rs.getDouble("Duracion"));
-                s.setNomPartida(rs.getString("NomPartida"));
-                listaSesiones.add(s);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return listaSesiones;
-    }
+	    try (Connection conn = DatabaseConnection.getConnection();
+	         PreparedStatement ps = conn.prepareStatement(sql);
+	         ResultSet rs = ps.executeQuery()) {
+	        
+	        while (rs.next()) {
+	            Sesion s = new Sesion();
+	            s.setNumSesion(rs.getInt("NumSesion"));
+	            
+	            s.setNombre(rs.getString("NombreSesion")); 
+	            s.setCantidad(rs.getInt("CantParticipantes"));
+	            
+	            s.setFecha(rs.getDate("Fecha"));
+	            s.setDuracion(rs.getDouble("Duracion"));
+	            s.setNomPartida(rs.getString("NomPartida"));
+	            listaSesiones.add(s);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return listaSesiones;
+	}
 
     public boolean insertarSesion(Sesion sesion) {
-        String sql = "INSERT INTO Sesion (NumSesion, Nombre, Cantidad, Fecha, Duracion, NomPartida) VALUES (?, ?, ?, ?, ?, ?)";
+    	String sql = "INSERT INTO Sesion (NumSesion, NombreSesion, CantParticipantes, Fecha, Duracion, NomPartida) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection(); 
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, sesion.getNumSesion());

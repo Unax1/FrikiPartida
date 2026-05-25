@@ -25,6 +25,6 @@ public class PersonajeServletListar extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         List<Personaje> lista = personajeDAO.listarPersonajes();
         request.setAttribute("listaPersonajes", lista);
-        request.getRequestDispatcher("personajeListar.jsp").forward(request, response);
+        request.getRequestDispatcher("/personajeListar.jsp").forward(request, response);
     }
 }

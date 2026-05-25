@@ -22,35 +22,48 @@ public class ArmaEspecialDAO {
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             
-            while (rs.next()) {
-                ArmaEspecial ae = new ArmaEspecial();
-                ae.setId(rs.getInt("IDArma"));
-                ae.setNombre(rs.getString("Nombre"));
-                ae.setTipoDano(rs.getString("TipoDano"));
-                ae.setDado(rs.getString("DadoDano")); 
-                ae.setPrecio(rs.getString("Precio"));
-                ae.setPeso(rs.getDouble("Peso"));
-                ae.setPropiedades(rs.getString("Propiedades"));
-                ae.setNomPartida(rs.getString("NomPartida"));
-                listaArmaEspecial.add(ae);
-            }
+        	while (rs.next()) {
+        	    ArmaEspecial ae = new ArmaEspecial();
+        	    
+        	    ae.setId(rs.getInt("IDArma"));
+        	    ae.setNombre(rs.getString("Nombre"));
+        	    ae.setTipoDano(rs.getString("TipoDano"));
+        	    ae.setDado(rs.getString("DadoDano")); 
+        	    ae.setPrecio(rs.getString("Precio"));
+        	    ae.setPeso(rs.getDouble("Peso"));
+        	    ae.setPropiedades(rs.getString("Propiedades"));
+        	    ae.setNomPartida(rs.getString("NomPartida"));
+        	    
+        	    
+        	    ae.setRareza(rs.getString("Rareza"));
+        	    ae.setBonificador(rs.getInt("Bonificador"));
+        	    ae.setEfectoMagico(rs.getString("EfectoMagico"));
+        	    
+        	    listaArmaEspecial.add(ae);
+        	}
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return listaArmaEspecial;
     }
-
-    public boolean insertarArma(Arma arma) {
-        String sql = "INSERT INTO Armas (Nombre, TipoDano, DadoDano, Precio, Peso, Propiedades, NomPartida) VALUES (?, ?, ?, ?, ?, ?, ?)";
+ 
+    public boolean insertarArmaEspecial(ArmaEspecial armaEspecial) {
+        String sql = "INSERT INTO ArmasEspeciales (a.Nombre, a.TipoDano, a.DadoDano, a.Precio, a.Peso, a.Propiedades, a.NomPartida"
+    		+ "ae.Rareza, ae.Bonificador, ae.EfectoMagico FROM Armas a "
+    		+ "INNER JOIN ArmasEspeciales ae ON a.IDArma = ae.IDArma;) "
+    		+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection(); 
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, arma.getNombre());
-            ps.setString(2, arma.getTipoDano());
-            ps.setString(3, arma.getDado());
-            ps.setString(4, arma.getPrecio());
-            ps.setDouble(5, arma.getPeso());
-            ps.setString(6, arma.getPropiedades());
-            ps.setString(7, arma.getNomPartida());
+            ps.setString(1, armaEspecial.getNombre());
+            ps.setString(2, armaEspecial.getTipoDano());
+            ps.setString(3, armaEspecial.getDado());
+            ps.setString(4, armaEspecial.getPrecio());
+            ps.setDouble(5, armaEspecial.getPeso());
+            ps.setString(6, armaEspecial.getPropiedades());
+            ps.setString(7, armaEspecial.getNomPartida());
+            ps.setString(8, armaEspecial.getRareza());
+            ps.setInt(9, armaEspecial.getBonificador());
+            ps.setString(10, armaEspecial.getEfectoMagico());
             
             int filas = ps.executeUpdate();
             return filas > 0;
@@ -60,15 +73,17 @@ public class ArmaEspecialDAO {
         }
     }
 
-    public Arma obtenerArmaPorID(int id) {
-        Arma arma = null;
-        String sql = "SELECT IDArma, Nombre, TipoDano, DadoDano, Precio, Peso, Propiedades, NomPartida FROM Armas WHERE IDArma = ?";
+    public ArmaEspecial obtenerArmaEspecilPorID(int id) {
+        ArmaEspecial armaEspecial = null;
+        String sql = "INSERT INTO ArmasEspeciales (a.Nombre, a.TipoDano, a.DadoDano, a.Precio, a.Peso, a.Propiedades, a.NomPartida"
+        		+ "ae.Rareza, ae.Bonificador, ae.EfectoMagico FROM Armas a"
+        		+ "INNER JOIN ArmasEspeciales ae ON a.IDArma = ae.IDArma;)  WHERE IDArma = ?";
         try (Connection conn = DatabaseConnection.getConnection(); 
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    arma = new Arma(
+                    armaEspecial = new ArmaEspecial(
                         rs.getInt("IDArma"), 
                         rs.getString("Nombre"), 
                         rs.getString("TipoDano"),
@@ -76,37 +91,48 @@ public class ArmaEspecialDAO {
                         rs.getString("Precio"), 
                         rs.getDouble("Peso"),
                         rs.getString("Propiedades"),
-                        rs.getString("NomPartida")
+                        rs.getString("NomPartida"),
+                        rs.getString("Rareza"),
+                        rs.getInt("Bonificador"),
+                        rs.getString("EfectoMagico")
                     );
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return arma;
+        return armaEspecial;
     }
 
-    public boolean actualizarArma(Arma arma) {
-        String sql = "UPDATE Armas SET Nombre = ?, TipoDano = ?, DadoDano = ?, Precio = ?, Peso = ?, Propiedades = ?, NomPartida = ? WHERE IDArma = ?";
+    public boolean actualizarArmaEspecial(ArmaEspecial armaEspecial) {
+        String sql = "UPDATE ArmasEspeciales SET (a.Nombre, a.TipoDano, a.DadoDano, a.Precio, a.Peso, a.Propiedades, a.NomPartida"
+        		+ "ae.Rareza, ae.Bonificador, ae.EfectoMagico FROM Armas a"
+        		+ "INNER JOIN ArmasEspeciales ae ON a.IDArma = ae.IDArma;)  WHERE IDArma = ?";
+        
         try (Connection conn = DatabaseConnection.getConnection(); 
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, arma.getNombre());
-            ps.setString(2, arma.getTipoDano());
-            ps.setString(3, arma.getDado());
-            ps.setString(4, arma.getPrecio());
-            ps.setDouble(5, arma.getPeso());
-            ps.setString(6, arma.getPropiedades());
-            ps.setString(7, arma.getNomPartida());
-            ps.setInt(8, arma.getId());
+            ps.setString(1, armaEspecial.getNombre());
+            ps.setString(2, armaEspecial.getTipoDano());
+            ps.setString(3, armaEspecial.getDado());
+            ps.setString(4, armaEspecial.getPrecio());
+            ps.setDouble(5, armaEspecial.getPeso());
+            ps.setString(6, armaEspecial.getPropiedades());
+            ps.setString(7, armaEspecial.getNomPartida());
+            ps.setInt(8, armaEspecial.getId());
+            ps.setString(8, armaEspecial.getRareza());
+            ps.setInt(9, armaEspecial.getBonificador());
+            ps.setString(10, armaEspecial.getEfectoMagico());
+            
             return ps.executeUpdate() > 0;
+            
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
     
-    public boolean eliminarArma(int id) {
-        String sql = "DELETE FROM Armas WHERE IDArma = ?";
+    public boolean eliminarArmaEspecial(int id) {
+        String sql = "DELETE FROM ArmasEspeciales WHERE IDArma = ?";
         try (Connection conn = DatabaseConnection.getConnection(); 
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);

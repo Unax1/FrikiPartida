@@ -27,7 +27,9 @@ public class SesionServletModificar extends HttpServlet {
         try {
             if (idStr != null && partida != null) {
                 int id = Integer.parseInt(idStr);
+                
                 Sesion sesion = sesionDAO.obtenerSesionPorNumero(id, partida);
+                
                 if (sesion != null) {
                     request.setAttribute("sesion", sesion);
                     request.getRequestDispatcher("sesionModificar.jsp").forward(request, response);
@@ -47,10 +49,10 @@ public class SesionServletModificar extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         try {
             int numSesion = Integer.parseInt(request.getParameter("NumSesion"));
-            String nombre = request.getParameter("Nombre");
-            int cantidad = Integer.parseInt(request.getParameter("Cantidad"));
-            Date fecha = Date.valueOf(request.getParameter("Fecha"));
-            double duracion = Double.parseDouble(request.getParameter("Duracion"));
+            String nombre = request.getParameter("nombre");
+            int cantidad = Integer.parseInt(request.getParameter("cantidad"));
+            Date fecha = Date.valueOf(request.getParameter("fecha"));
+            double duracion = Double.parseDouble(request.getParameter("duracion"));
             String nomPartida = request.getParameter("NomPartida");
             
             Sesion sesionActualizada = new Sesion(numSesion, nombre, cantidad, fecha, duracion, nomPartida);
@@ -59,7 +61,7 @@ public class SesionServletModificar extends HttpServlet {
                 response.sendRedirect("listarSesiones");
             } else {
                 request.setAttribute("sesion", sesionActualizada);
-                request.setAttribute("mensaje", "No se pudo actualizar la sesión.");
+                request.setAttribute("mensaje", "No se pudo actualizar la sesión en la base de datos.");
                 request.setAttribute("tipo", "error");
                 request.getRequestDispatcher("sesionModificar.jsp").forward(request, response);
             }

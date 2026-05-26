@@ -318,11 +318,9 @@
                         <a href="#" class="gm-link">Panel DM (<%= nombreDM %>)</a>
                         <ul class="dropdown-menu">
                             <li><a href="listarPartidas">Gestionar Partidas</a></li>
-                            <li><a href="partidaInsertar.jsp">Crear Partida</a></li>
                             <li><a href="listarArmas">Gestionar Armas</a></li>
-                            <li><a href="armaInsertar.jsp">Forjar Armas</a></li>
-                            <li><a href="listarArmasEspeciales">Gestionar Artefactos</a></li> <li><a href="armaEspecialInsertar.jsp">Infundir Magia</a></li> <li><a href="listarSesiones">Gestionar Sesiones</a></li>
-                            <li><a href="sesionInsertar.jsp">Planificar Sesión</a></li>
+                            <li><a href="listarArmasEspeciales">Gestionar Artefactos</a></li> 
+                            <li><a href="listarSesiones">Gestionar Sesiones</a></li>
                         </ul>
                     </li>
                     <li><a href="logout" class="btn-logout">Abandonar Grupo</a></li>
@@ -337,18 +335,16 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <% if (esDM) { %>
-                <h1>MÁSTER DE LA TORRE</h1>
+                <h1>DUNGEON MASTER</h1>
                 <p class="subtitle">Bienvenido de nuevo, <%= nombreDM %>. Las crónicas del reino obedecen a tu control.</p>
             <% } else { %>
                 <h1>FORJA TU DESTINO</h1>
-                <p class="subtitle">Gestiona tus campañas, personajes y artefactos legendarios en un solo lugar.</p>
+                <p class="subtitle">Hola, jugador! Bienvenido a nuestro mundo de fantasía.</p>
             <% } %>
 
             <div class="hero-buttons">
-                <% if (esDM) { %>
-                    <a href="armaEspecialInsertar.jsp" class="btn-primary">Forjar Artefacto</a> <a href="listarArmasEspeciales" class="btn-secondary">Bóveda Legendaria</a> <% } else { %>
-                    <a href="personajeInsertar.jsp" class="btn-primary">Crear Personaje</a>
-                    <a href="listarArmasEspeciales" class="btn-secondary">Ver Bóveda Mágica</a> <% } %>
+				<a href="frikiPartida.jsp" class="btn-primary">¿Para qúe sirve FrikiPartida?</a> 
+				<a href="dnd.jsp" class="btn-secondary">¿Como se juega D&D?</a>
             </div>
         </div>
     </section>

@@ -147,33 +147,33 @@
         Sesion sesion = (Sesion) request.getAttribute("sesion");
         if (sesion != null) {
     %>
-        <form action="modificarSesion" method="post">
-            <input type="hidden" name="NumSesion" value="<%= sesion.getNumSesion() %>">
-
-            <fieldset>
-                <legend>Editar Registro</legend>
-
-                <label for="nombre">Nombre de la sesión:</label>
-                <input type="text" id="nombre" name="nombre" value="<%= sesion.getNombre() %>" required><br><br>
-
-                <label for="cantidad">Cantidad de participantes:</label>
-                <input type="number" id="cantidad" name="cantidad" min="0" max="120" value="<%= sesion.getCantidad() %>" required><br><br>
-
-                <label for="fecha">Fecha de juego:</label>
-                <input type="text" id="fecha" name="fecha" value="<%= sesion.getFecha() %>" required><br><br>
-                
-                <label for="duracion">Duración (Horas):</label>
-                <input type="text" id="duracion" name="duracion" value="<%= sesion.getDuracion() %>" required><br><br>
-                
-                <label for="nomPartida">Nombre de la partida (Mesa):</label>
-                <input type="text" id="nomPartida" name="nomPartida" value="<%= sesion.getNomPartida() %>" readonly style="color: #666; background-color: #0a0a0a;">
-            </fieldset>
-
-            <div class="form-buttons">
-                <input type="submit" value="Guardar Cambios">
-                <a class="btn-volver" href="listarSesiones">Cancelar</a>
-            </div>
-        </form>
+	<form action="modificarSesion" method="post">
+	    <input type="hidden" name="NumSesion" value="<%= sesion.getNumSesion() %>">
+	
+	    <fieldset>
+	        <legend>Editar Registro</legend>
+	
+	        <label for="nombre">Nombre de la sesión:</label>
+	        <input type="text" id="nombre" name="nombre" value="<%= sesion.getNombre() %>" required><br><br>
+	
+	        <label for="cantidad">Cantidad de participantes:</label>
+	        <input type="number" id="cantidad" name="cantidad" min="0" max="120" value="<%= sesion.getCantidad() %>" required><br><br>
+	
+	        <label for="fecha">Fecha de juego:</label>
+			<input type="date" id="fecha" name="fecha" value="<%= sesion.getFecha() %>" required><br><br>
+	        
+	        <label for="duracion">Duración (Horas):</label>
+	        <input type="text" id="duracion" name="duracion" value="<%= sesion.getDuracion() %>" required><br><br>
+	        
+	        <label for="NomPartida">Nombre de la partida (Mesa):</label>
+	        <input type="text" id="NomPartida" name="NomPartida" value="<%= sesion.getNomPartida() %>" readonly style="color: #666; background-color: #0a0a0a;">
+	    </fieldset>
+	
+	    <div class="form-buttons">
+	        <input type="submit" value="Guardar Cambios">
+	        <a class="btn-volver" href="listarSesiones">Cancelar</a>
+	    </div>
+	</form>
     <% } else { %>
         <p class="mensaje-error">Error crítico: No se encontraron los datos de la sesión solicitada.</p>
         <div class="form-buttons">

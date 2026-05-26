@@ -20,9 +20,22 @@
         th, td { border: 1px solid #333; padding: 12px 15px; text-align: center; }
         th { background-color: #171717; color: #e53935; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.5px; }
         tr:hover { background-color: #2a2a2a; }
-        .btn { padding: 8px 15px; border: none; cursor: pointer; border-radius: 4px; font-size: 13px; text-decoration: none; display: inline-block; font-weight: bold; text-transform: uppercase; transition: background 0.3s; }
-        .btn-modificar { background-color: #0d47a1; color: white; margin-right: 5px; }
-        .btn-modificar:hover { background-color: #1565c0; }
+        .btn { padding: 8px 15px; border: none; cursor: pointer; border-radius: 4px; font-size: 13px; text-decoration: none; display: inline-block; font-weight: bold; text-transform: uppercase; transition: all 0.3s ease; }
+        
+        /* CAMBIO: Negro Obsidiana aplicado */
+        .btn-modificar { 
+            background-color: #151515; 
+            color: #b0b0b0; 
+            border: 1px solid #444; 
+            margin-right: 5px; 
+        }
+        .btn-modificar:hover { 
+            background-color: #ffffff; 
+            color: #000000; 
+            border-color: #ffffff; 
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.4); 
+        }
+        
         .btn-borrar { background-color: #b71c1c; color: white; }
         .btn-borrar:hover { background-color: #d32f2f; }
         .btn-insertar { background-color: #b71c1c; color: white; padding: 12px 25px; font-size: 15px; }
@@ -69,7 +82,6 @@
                         <td><span class="badge-info"><%= par.getDificultad() %></span></td>
                         <td>
                             <% if (esMaster) { %>
-                                
                                 <a class="btn btn-modificar" href="modificarPartida?IDPartida=<%= par.getId() %>">Modificar</a>
                                 <a class="btn btn-borrar" href="eliminarPartida?IDPartida=<%= par.getId() %>"
                                    onclick="return confirm('¿Está seguro de que desea disolver esta mesa de campaña?');">Borrar</a>

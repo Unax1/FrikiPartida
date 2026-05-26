@@ -20,8 +20,22 @@
         .btn-add:hover { background-color: #d32f2f; }
         .btn-back { background-color: #424242; color: white; }
         .btn-back:hover { background-color: #616161; }
-        .btn-edit { background-color: #0d47a1; color: white; padding: 5px 10px; font-size: 0.75rem; margin-right: 5px; }
-        .btn-edit:hover { background-color: #1565c0; }
+        
+        .btn-edit { 
+            background-color: #151515; 
+            color: #b0b0b0; 
+            border: 1px solid #444;
+            padding: 5px 10px; 
+            font-size: 0.75rem; 
+            margin-right: 5px; 
+        }
+        .btn-edit:hover { 
+            background-color: #ffffff; 
+            color: #000000; 
+            border-color: #ffffff; 
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.4); 
+        }
+        
         .btn-delete { background-color: #b71c1c; color: white; padding: 5px 10px; font-size: 0.75rem; }
         .btn-delete:hover { background-color: #d32f2f; }
         table { width: 100%; border-collapse: collapse; margin-top: 15px; background-color: #222; }
@@ -72,7 +86,7 @@
                     <td><span class="badge-partida"><%= a.getNomPartida() %></span></td>
                     <td>
                         <% if (esMaster) { %>
-                            <a href="modificarArmas?IDArma=<%= a.getId() %>" class="btn btn-edit">Editar</a>
+                            <a href="modificarArmas?IDArma=<%= a.getId() %>" class="btn btn-edit">Modificar</a>
                             <a href="eliminarArma?IDArma=<%= a.getId() %>" class="btn btn-delete" onclick="return confirm('¿Seguro que quieres destruir este ítem del inventario?');">Borrar</a>
                         <% } else { %>
                             <span class="restricted">Solo DM</span>

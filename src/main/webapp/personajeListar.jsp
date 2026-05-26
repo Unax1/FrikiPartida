@@ -74,18 +74,23 @@
             display: inline-block; 
             font-weight: bold; 
             text-transform: uppercase; 
-            transition: background 0.3s, transform 0.1s; 
+            transition: all 0.3s ease; 
         }
         .btn:active {
             transform: scale(0.98);
         }
+        
         .btn-modificar { 
-            background-color: #0d47a1; 
-            color: white; 
+            background-color: #151515; 
+            color: #b0b0b0; 
+            border: 1px solid #444; 
             margin-right: 5px; 
         }
         .btn-modificar:hover { 
-            background-color: #1565c0; 
+            background-color: #ffffff; 
+            color: #000000; 
+            border-color: #ffffff; 
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.4); 
         }
         .btn-borrar { 
             background-color: #b71c1c; 

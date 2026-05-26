@@ -71,8 +71,22 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.9);
         }
 
-        .btn { padding: 6px 10px; border: none; cursor: pointer; border-radius: 4px; font-size: 12px; text-decoration: none; display: inline-block; font-weight: bold; text-transform: uppercase; }
-        .btn-modificar { background-color: #1565c0; color: white; margin-right: 5px; }
+        .btn { padding: 6px 10px; border: none; cursor: pointer; border-radius: 4px; font-size: 12px; text-decoration: none; display: inline-block; font-weight: bold; text-transform: uppercase; transition: all 0.3s ease; }
+        
+        /* CAMBIO: Negro Obsidiana aplicado */
+        .btn-modificar { 
+            background-color: #151515; 
+            color: #b0b0b0; 
+            border: 1px solid #444; 
+            margin-right: 5px; 
+        }
+        .btn-modificar:hover { 
+            background-color: #ffffff; 
+            color: #000000; 
+            border-color: #ffffff; 
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.4); 
+        }
+        
         .btn-borrar { background-color: #4d0000; color: #ff0000; border: 1px solid #990000; }
         .btn-insertar { background-color: #990000; color: white; padding: 12px 25px; font-size: 15px; }
         .btn-volver { background-color: #1a0000; color: #b0b0b0; border: 1px solid #4d0000; margin-left: 10px; padding: 12px 25px; }

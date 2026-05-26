@@ -86,15 +86,24 @@
         .btn:active {
             transform: scale(0.98);
         }
+
         .btn-modificar { 
-            background-color: #1565c0; 
-            color: white; 
-            margin-right: 5px; 
+
+            background-color: #151515;
+            color: #b0b0b0;
+            border: 1px solid #444;
+            margin-right: 5px;
         }
+        
         .btn-modificar:hover { 
-            background-color: #1e88e5; 
-            box-shadow: 0 0 8px rgba(33, 150, 243, 0.5);
+        
+            background-color: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.4)
+
         }
+        
         .btn-borrar { 
             background-color: #4d0000; 
             color: #ff0000; 

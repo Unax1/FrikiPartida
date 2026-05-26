@@ -343,7 +343,7 @@
             <% } %>
 
             <div class="hero-buttons">
-				<a href="frikiPartida.jsp" class="btn-primary">¿Para qúe sirve FrikiPartida?</a> 
+				<a href="acercaDe.jsp" class="btn-primary">¿Para qúe sirve FrikiPartida?</a> 
 				<a href="dnd.jsp" class="btn-secondary">¿Como se juega D&D?</a>
             </div>
         </div>
